@@ -6,7 +6,7 @@ class Controller
 {
     //
     public function getUserName(): String{
-        return 1;
+        return "John Doe";
     }
 }
 
