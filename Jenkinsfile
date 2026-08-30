@@ -30,5 +30,11 @@
                    sh 'vendor/bin/phpstan analyse --error-format=raw'
                }
            }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t fil-rouge-app:${BUILD_NUMBER} .'
+            }
+        }
        }
    }
