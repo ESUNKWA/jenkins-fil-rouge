@@ -14,7 +14,19 @@ pipeline {
                 sh 'composer install --no-interaction --prefer-dist'
                 sh 'npm ci'
                 sh 'npm run build'
+                sh 'cp .env.example .env'
+                sh 'php artisan key:generate'
             }
         }
     }
+    stage('Test') {
+    steps {
+        sh 'php artisan test --log-junit storage/logs/junit.xml || true'
+    }
+    post {
+        always {
+            junit 'storage/logs/junit.xml'
+        }
+    }
+}
 }
