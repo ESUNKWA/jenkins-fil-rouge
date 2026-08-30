@@ -32,6 +32,7 @@
            }
 
         stage('Docker Build') {
+            agent any
             steps {
                 sh 'docker build -t fil-rouge-app:${BUILD_NUMBER} .'
             }
