@@ -18,15 +18,16 @@ pipeline {
                 sh 'php artisan key:generate'
             }
         }
-    }
-    stage('Test') {
-    steps {
-        sh 'php artisan test --log-junit storage/logs/junit.xml || true'
-    }
-    post {
-        always {
-            junit 'storage/logs/junit.xml'
+        stage('Test') {
+            steps {
+                sh 'php artisan test --log-junit storage/logs/junit.xml || true'
+            }
+            post {
+                always {
+                    junit 'storage/logs/junit.xml'
+                }
+            }
         }
     }
-}
+    
 }
