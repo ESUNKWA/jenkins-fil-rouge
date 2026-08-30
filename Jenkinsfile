@@ -1,7 +1,7 @@
    pipeline {
        agent {
            docker {
-               image 'fil-rouge-build:1.0'
+               image 'fil-rouge-build:1.1'
                args '-u root'
            }
        }
