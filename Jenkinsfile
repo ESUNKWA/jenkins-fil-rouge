@@ -1,14 +1,12 @@
-pipeline {
-    agent any
-    stages {
-        stage('Checkout Info') {
-            steps {
-                sh 'echo "Contenu du workspace après checkout :"'
-                sh 'ls -la'
-                sh 'git log -1 --oneline'
-                sh 'git status'
-                sh 'echo "Contenu du workspace après checkout :"'
-            }
-        }
-    }
-}
+   pipeline {
+       agent any
+       stages {
+           stage('Build') {
+               steps {
+                   sh 'composer install --no-interaction --prefer-dist'
+                   sh 'npm ci'
+                   sh 'npm run build'
+               }
+           }
+       }
+   }
