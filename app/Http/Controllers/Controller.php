@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+class Controller
 {
     //
+    public function getUserName(): String{
+        return 1;
+    }
 }
+
+
