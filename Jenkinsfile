@@ -6,6 +6,7 @@ pipeline {
     }
 
     stages {
+
         stage('Build') {
             steps {
                 sh 'echo "PATH=$PATH"'
@@ -18,6 +19,7 @@ pipeline {
                 sh 'php artisan key:generate'
             }
         }
+
         stage('Test') {
             steps {
                 sh 'php artisan test --log-junit storage/logs/junit.xml || true'
@@ -26,6 +28,14 @@ pipeline {
                 always {
                     junit 'storage/logs/junit.xml'
                 }
+            }
+        }
+
+        stage('Quality') {
+            steps {
+                sh 'composer audit || true'
+                sh 'npm audit --audit-level=high || true'
+                sh 'vendor/bin/phpstan analyse --error-format=raw'
             }
         }
     }
