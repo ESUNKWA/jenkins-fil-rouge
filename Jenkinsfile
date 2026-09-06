@@ -2,6 +2,19 @@ pipeline {
     agent none
 
     stages {
+
+        stage('Secret Scan') {
+            agent {
+                docker {
+                    image 'zricethezav/gitleaks:latest'
+                }
+            }
+
+            steps {
+                sh 'gitleaks detect --source=. --no-banner'
+            }
+        }
+
         stage('Build') {
             agent {
                 docker {
