@@ -6,13 +6,13 @@ pipeline {
         stage('Secret Scan') {
             agent {
                 docker {
-                    image 'zricethezav/gitleaks:latest'
+                    image 'zricethezav/gitleaks:v8.30.1'
                     args '--entrypoint=""'
                 }
             }
 
             steps {
-                sh 'gitleaks detect --source=. --no-banner --verbose'
+                sh 'gitleaks detect --source=. --no-banner --verbose --redact'
             }
         }
 
