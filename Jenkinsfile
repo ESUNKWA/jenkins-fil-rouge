@@ -12,7 +12,7 @@ pipeline {
             }
 
             steps {
-                sh 'gitleaks detect --source=. --no-banner'
+                sh 'gitleaks detect --source=. --no-banner -verbose'
             }
         }
 
